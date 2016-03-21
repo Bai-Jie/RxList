@@ -49,7 +49,7 @@ public class ObservableList<T> {
   public void remove(T o) {
     int index = list.indexOf(o);
     if (index >= 0) {
-      list.remove(index);
+      remove(index);
     }
   }
 
