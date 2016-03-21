@@ -1,0 +1,9 @@
+<FindBugsFilter>
+
+    <!-- don't need to set serialVersionUID in Groovy Closure -->
+    <Match>
+        <Class name="~.*_closure\d+"/>
+        <Bug pattern="SE_NO_SERIALVERSIONID"/>
+    </Match>
+
+</FindBugsFilter>

@@ -1,0 +1,56 @@
+def javaSubprojects = []
+javaSubprojects << ':rxlist'
+
+
+
+javaSubprojects.each {projectPath ->
+  project(projectPath) {
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+    apply plugin: 'pmd'
+    apply plugin: 'findbugs'
+
+    sourceCompatibility = JavaVersion.VERSION_1_7
+
+    dependencies {
+      compile 'com.google.code.findbugs:jsr305:3.0.1'
+      testCompile "junit:junit:4.12"
+    }
+
+    checkstyle {
+      //toolVersion = "6.2"
+      configFile = rootProject.file 'config/checkstyle/checkstyle.xml'
+    }
+
+    pmd {
+      ruleSets = ["java-basic", "java-braces"/*, "java-junit"*/]
+    }
+
+    findbugs {
+      excludeFilter = rootProject.file 'config/findbugs/excludeFilter.xml'
+    }
+  }
+}
+
+allprojects {
+  group = 'gq.baijie.rxlist'
+  version = new Version('0.1.0-SNAPSHOT')
+  status = version.status
+
+  repositories {
+    jcenter()
+    mavenCentral()
+    maven {url "http://maven.oschina.net/content/groups/public/"}
+  }
+
+  tasks.findAll {
+    task -> [JavaCompile, Javadoc].any {it.isInstance(task)}
+  }.each {task ->
+    task.options.encoding = 'UTF-8'
+  }
+
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
