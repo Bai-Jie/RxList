@@ -54,8 +54,8 @@ allprojects {
       locale 'en_US'
       charSet 'UTF-8'
       docEncoding 'UTF-8'
-      links ("http://jsr-305.googlecode.com/svn/trunk/javadoc/",
-            "http://docs.oracle.com/javase/${task.project.sourceCompatibility.majorVersion}/docs/api/")
+      links ("https://jsr-305.googlecode.com/svn/trunk/javadoc/",
+            "https://docs.oracle.com/javase/${task.project.sourceCompatibility.majorVersion}/docs/api/")
     }
   }
 
