@@ -28,7 +28,7 @@ public class ObservableList<T> {
     return eventBus.onBackpressureDrop();
   }
 
-  List<T> list() {
+  public List<T> list() {
     return Collections.unmodifiableList(list);
   }
 
